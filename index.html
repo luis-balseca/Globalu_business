@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GlobalU — Business Programme Catalogue 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --blue: #1565D8;
+  --blue-dark: #0f4fae;
+  --blue-light: #e8f0fd;
+  --navy: #0d1321;
+  --black: #111318;
+  --gray-100: #f5f6f8;
+  --gray-200: #eaecf0;
+  --gray-300: #d1d5db;
+  --gray-500: #6b7280;
+  --gray-700: #374151;
+  --white: #ffffff;
+  --radius: 12px;
+  --radius-sm: 8px;
+}
+body { font-family: 'Poppins', sans-serif; background: var(--gray-100); color: var(--black); -webkit-font-smoothing: antialiased; }
+
+/* HERO */
+.hero { background: var(--navy); padding: 56px 48px 64px; position: relative; overflow: hidden; width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); box-sizing: border-box; }
+.hero-glow { position: absolute; right: -100px; top: -100px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(21,101,216,0.20) 0%, transparent 65%); pointer-events: none; }
+.hero-glow2 { position: absolute; left: 35%; bottom: -140px; width: 360px; height: 360px; background: radial-gradient(circle, rgba(21,101,216,0.10) 0%, transparent 65%); pointer-events: none; }
+.hero-inner { position: relative; z-index: 1; max-width: 680px; }
+.hero-tag { display: inline-flex; align-items: center; gap: 7px; background: rgba(21,101,216,0.22); border: 1px solid rgba(91,156,246,0.4); border-radius: 20px; padding: 4px 14px; font-size: 11px; font-weight: 600; color: #7eb3f5; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 20px; }
+.hero-dot { width: 6px; height: 6px; background: #7eb3f5; border-radius: 50%; }
+.hero h1 { font-size: clamp(30px, 4.5vw, 50px); font-weight: 700; color: white; line-height: 1.15; letter-spacing: -0.5px; margin-bottom: 16px; }
+.hero h1 .accent { color: #5b9cf6; }
+.hero p { font-size: 15px; font-weight: 300; color: rgba(255,255,255,0.52); line-height: 1.75; margin-bottom: 36px; max-width: 560px; }
+
+/* SEARCH */
+.search-wrap { display: flex; gap: 12px; max-width: 600px; }
+.search-box { flex: 1; position: relative; }
+.search-icon { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; pointer-events: none; }
+.search-icon path, .search-icon circle, .search-icon line { stroke: rgba(255,255,255,0.4); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.search-input { width: 100%; height: 50px; padding: 0 16px 0 48px; border: 1.5px solid rgba(255,255,255,0.12); border-radius: var(--radius-sm); background: rgba(255,255,255,0.08); color: white; font-family: 'Poppins', sans-serif; font-size: 14px; outline: none; transition: all 0.2s; }
+.search-input::placeholder { color: rgba(255,255,255,0.38); }
+.search-input:focus { background: rgba(255,255,255,0.13); border-color: rgba(91,156,246,0.6); box-shadow: 0 0 0 3px rgba(21,101,216,0.2); }
+.search-btn { height: 50px; padding: 0 26px; background: var(--blue); color: white; border: none; border-radius: var(--radius-sm); font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; transition: background 0.15s; white-space: nowrap; }
+.search-btn:hover { background: var(--blue-dark); }
+
+/* STATS BAR */
+.stats-bar { background: white; border-bottom: 1px solid var(--gray-200); padding: 0 48px; display: flex; align-items: center; gap: 0; overflow-x: auto; width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); box-sizing: border-box; }
+.stat { display: flex; align-items: center; gap: 12px; padding: 18px 32px 18px 0; flex-shrink: 0; }
+.stat + .stat { border-left: 1px solid var(--gray-200); padding-left: 32px; }
+.stat-icon { width: 40px; height: 40px; background: var(--blue-light); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.stat-icon svg { width: 18px; height: 18px; stroke: var(--blue); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.stat-num { font-size: 20px; font-weight: 700; color: var(--black); line-height: 1; }
+.stat-label { font-size: 12px; color: var(--gray-500); margin-top: 2px; white-space: nowrap; }
+
+/* FILTER BAR */
+.filter-bar { background: white; border-bottom: 1px solid var(--gray-200); padding: 0 48px; display: flex; align-items: center; gap: 8px; position: sticky; top: 0; z-index: 100; overflow-x: auto; scrollbar-width: none; width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); box-sizing: border-box; }
+.filter-bar::-webkit-scrollbar { display: none; }
+.filter-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-500); white-space: nowrap; padding: 18px 0; margin-right: 4px; flex-shrink: 0; }
+.filter-btn { display: inline-flex; align-items: center; gap: 6px; padding: 7px 16px; border-radius: 20px; border: 1.5px solid var(--gray-200); background: transparent; font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 500; color: var(--gray-700); cursor: pointer; transition: all 0.15s; white-space: nowrap; flex-shrink: 0; margin: 10px 0; }
+.filter-btn:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-light); }
+.filter-btn.active { background: var(--blue); border-color: var(--blue); color: white; }
+.fcount { font-size: 11px; font-weight: 700; background: rgba(0,0,0,0.10); border-radius: 10px; padding: 1px 7px; }
+.filter-btn.active .fcount { background: rgba(255,255,255,0.25); }
+
+/* MAIN */
+.main { padding: 36px 48px 80px; }
+.results-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+.results-text { font-size: 14px; color: var(--gray-500); }
+.results-text strong { color: var(--black); font-weight: 600; }
+
+/* SECTION LABEL */
+.section-label { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; margin-top: 44px; }
+.section-label:first-of-type { margin-top: 0; }
+.section-line { flex: 1; height: 1px; background: var(--gray-200); }
+.section-name { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-500); white-space: nowrap; }
+
+/* GRID */
+.programme-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; margin-bottom: 4px; }
+
+/* CARD */
+.programme-card { background: white; border-radius: var(--radius); border: 1px solid var(--gray-200); overflow: hidden; display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s; }
+.programme-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.10); border-color: #a8c4f5; }
+.card-bar { height: 5px; }
+.bar-finance { background: linear-gradient(90deg,#1565D8,#4f94e8); }
+.bar-erp { background: linear-gradient(90deg,#059669,#34d399); }
+.bar-audit { background: linear-gradient(90deg,#7c3aed,#a78bfa); }
+.bar-culture { background: linear-gradient(90deg,#d97706,#fbbf24); }
+.card-body { padding: 20px 20px 0; flex: 1; display: flex; flex-direction: column; }
+.card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 12px; }
+.cat-pill { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; white-space: nowrap; }
+.cat-finance { background: #dbeafe; color: #1e40af; }
+.cat-erp { background: #d1fae5; color: #065f46; }
+.cat-audit { background: #ede9fe; color: #5b21b6; }
+.cat-culture { background: #fef3c7; color: #92400e; }
+.badge-new { font-size: 10px; font-weight: 700; background: var(--blue); color: white; padding: 3px 10px; border-radius: 20px; white-space: nowrap; }
+.badge-pop { font-size: 10px; font-weight: 700; background: #059669; color: white; padding: 3px 10px; border-radius: 20px; white-space: nowrap; }
+.card-title { font-size: 14.5px; font-weight: 600; color: var(--black); line-height: 1.45; margin-bottom: 10px; }
+.card-desc { font-size: 12.5px; font-weight: 300; line-height: 1.65; color: var(--gray-500); flex: 1; margin-bottom: 16px; }
+.card-footer { border-top: 1px solid var(--gray-200); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; }
+.card-meta { display: flex; align-items: center; gap: 14px; }
+.meta-chip { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--gray-500); font-weight: 400; }
+.meta-chip svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+.card-cta { display: inline-flex; align-items: center; gap: 5px; font-size: 13px; font-weight: 600; color: var(--blue); text-decoration: none; padding: 6px 14px; border-radius: 6px; border: 1.5px solid #bfdbfe; transition: all 0.15s; }
+.card-cta:hover { background: var(--blue); color: white; border-color: var(--blue); }
+.card-cta svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+
+/* NO RESULTS */
+.no-results { display: none; text-align: center; padding: 80px 0; color: var(--gray-500); }
+.no-results.show { display: block; }
+.no-results svg { width: 48px; height: 48px; stroke: var(--gray-300); fill: none; stroke-width: 1.5; margin: 0 auto 16px; display: block; stroke-linecap: round; stroke-linejoin: round; }
+.no-results h3 { font-size: 17px; font-weight: 600; color: var(--gray-700); margin-bottom: 8px; }
+.no-results p { font-size: 13px; }
+
+/* SECTION GROUP */
+.sec-group { }
+.sec-group.hidden { display: none; }
+
+html, body { margin: 0; padding: 0; }
+
+@media(max-width:680px){
+  .hero{padding:36px 20px 48px}
+  .stats-bar{padding:0 20px}
+  .filter-bar{padding:0 20px}
+  .main{padding:24px 20px 60px}
+  footer{padding:24px 20px}
+  .search-wrap{flex-direction:column}
+}
+
+.bar-employability { background: linear-gradient(90deg,#0891b2,#22d3ee); }
+.bar-projectmgmt   { background: linear-gradient(90deg,#be123c,#fb7185); }
+.bar-digitalai     { background: linear-gradient(90deg,#6d28d9,#8b5cf6); }
+.cat-employability { background: #cffafe; color: #155e75; }
+.cat-projectmgmt   { background: #ffe4e6; color: #9f1239; }
+.cat-digitalai     { background: #ede9fe; color: #4c1d95; }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-inner">
+    <div class="hero-tag"><span class="hero-dot"></span>Business Programme Catalogue · 2026</div>
+    <h1>Practical skills for<br>the <span class="accent">modern workplace</span></h1>
+    <p>Expert-led micro-programmes in finance, ERP systems, audit, and global business culture — designed for professionals who want to learn at their own pace, anywhere in the world.</p>
+    <div class="search-wrap">
+      <div class="search-box">
+        <svg class="search-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input class="search-input" id="searchInput" type="text" placeholder="Search programmes, topics, skills…" oninput="applyFilters()" />
+      </div>
+      <button class="search-btn" onclick="applyFilters()">Search</button>
+    </div>
+  </div>
+</section>
+
+<div class="stats-bar">
+  <div class="stat">
+    <div class="stat-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+    <div><div class="stat-num">25</div><div class="stat-label">Published programmes</div></div>
+  </div>
+  <div class="stat">
+    <div class="stat-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+    <div><div class="stat-num">3</div><div class="stat-label">Expert faculty</div></div>
+  </div>
+  <div class="stat">
+    <div class="stat-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg></div>
+    <div><div class="stat-num">4</div><div class="stat-label">Subject areas</div></div>
+  </div>
+  <div class="stat">
+    <div class="stat-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+    <div><div class="stat-num">Self-paced</div><div class="stat-label">Study anywhere, anytime</div></div>
+  </div>
+</div>
+
+<nav class="filter-bar">
+  <span class="filter-label">Filter by</span>
+  <button class="filter-btn active" onclick="setFilter('all',this)">All programmes <span class="fcount">25</span></button>
+  <button class="filter-btn" onclick="setFilter('finance',this)">Finance &amp; Accounting <span class="fcount">5</span></button>
+  <button class="filter-btn" onclick="setFilter('erp',this)">ERP &amp; Cost Management <span class="fcount">4</span></button>
+  <button class="filter-btn" onclick="setFilter('audit',this)">Audit &amp; AI <span class="fcount">3</span></button>
+  <button class="filter-btn" onclick="setFilter('culture',this)">Global Business Culture <span class="fcount">1</span></button>
+  <button class="filter-btn" onclick="setFilter('employability',this)">Personal Development <span class="fcount">4</span></button>
+  <button class="filter-btn" onclick="setFilter('projectmgmt',this)">Project Management <span class="fcount">4</span></button>
+  <button class="filter-btn" onclick="setFilter('digitalai',this)">Digital Skills &amp; AI <span class="fcount">4</span></button>
+</nav>
+
+<main class="main">
+  <div class="results-row">
+    <p class="results-text">Showing <strong id="rcount">25</strong> programmes</p>
+  </div>
+
+  <div id="noResults" class="no-results">
+    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <h3>No programmes found</h3>
+    <p>Try a different search term or clear the filters.</p>
+  </div>
+
+  <!-- FINANCE & ACCOUNTING -->
+  <div class="sec-group" id="sg-finance">
+    <div class="section-label"><div class="section-line"></div><span class="section-name">Finance &amp; Accounting</span><div class="section-line"></div></div>
+    <div class="programme-grid">
+
+      <article class="programme-card" data-cat="finance" data-search="practical guide understanding financial statements income balance cash flow">
+        <div class="card-bar bar-finance"></div>
+        <div class="card-body">
+          <div class="card-top"><span class="cat-pill cat-finance">Finance</span></div>
+          <h3 class="card-title">Practical Guide to Understanding Financial Statements</h3>
+          <p class="card-desc">Decode income statements, balance sheets, and cash flow reports with confidence. Learn to read, interpret, and apply financial data to everyday business decisions — no accounting background required.</p>
+        </div>
+        <div class="card-footer">
+          <div class="card-meta">
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Self-paced</span>
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Foundations</span>
+          </div>
+          <a class="card-cta" href="https://share.articulate.com/kQ9mwxxsIZuASnIheif3N" target="_blank">Preview <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </article>
+
+      <article class="programme-card" data-cat="finance" data-search="practical guide activity-based costing overhead allocation pricing abc">
+        <div class="card-bar bar-finance"></div>
+        <div class="card-body">
+          <div class="card-top"><span class="cat-pill cat-finance">Finance</span></div>
+          <h3 class="card-title">Practical Guide to Activity-Based Costing</h3>
+          <p class="card-desc">Move beyond traditional overhead allocation. Learn how ABC reveals the true cost of products, services, and customers — giving you sharper cost visibility and smarter pricing decisions.</p>
+        </div>
+        <div class="card-footer">
+          <div class="card-meta">
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Self-paced</span>
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Foundations</span>
+          </div>
+          <a class="card-cta" href="https://share.articulate.com/AtfnKp47wK7yFgYFNj_4Y" target="_blank">Preview <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </article>
+
+      <article class="programme-card" data-cat="finance" data-search="building cash flow investment decisions capital projects projections">
+        <div class="card-bar bar-finance"></div>
+        <div class="card-body">
+          <div class="card-top"><span class="cat-pill cat-finance">Finance</span></div>
+          <h3 class="card-title">A Practical Guide to Building Cash Flow for Investment Decisions</h3>
+          <p class="card-desc">Learn to construct robust cash flow projections from scratch and evaluate capital projects confidently. Bridges the gap between financial theory and real-world investment decision-making.</p>
+        </div>
+        <div class="card-footer">
+          <div class="card-meta">
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Self-paced</span>
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Foundations</span>
+          </div>
+          <a class="card-cta" href="https://share.articulate.com/CSHCyxebpqWWX2BqkE8F5" target="_blank">Preview <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </article>
+
+      <article class="programme-card" data-cat="finance" data-search="cash flow npv irr dcf investment valuation discounted net present value internal rate return">
+        <div class="card-bar bar-finance"></div>
+        <div class="card-body">
+          <div class="card-top"><span class="cat-pill cat-finance">Finance</span><span class="badge-pop">Popular</span></div>
+          <h3 class="card-title">Cash Flow, NPV, IRR &amp; DCF — Investment Valuation in Practice</h3>
+          <p class="card-desc">Master the complete investment valuation toolkit — discounted cash flow, net present value, and internal rate of return — through practical examples drawn from real-world business scenarios.</p>
+        </div>
+        <div class="card-footer">
+          <div class="card-meta">
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Self-paced</span>
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Foundations</span>
+          </div>
+          <a class="card-cta" href="https://share.articulate.com/A3Z8QoLr_CMxr3jRlYhpr" target="_blank">Preview <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </article>
+
+      <article class="programme-card" data-cat="finance" data-search="management accounting erp systems cost centre performance reporting">
+        <div class="card-bar bar-finance"></div>
+        <div class="card-body">
+          <div class="card-top"><span class="cat-pill cat-finance">Finance</span></div>
+          <h3 class="card-title">Management Accounting in ERP Systems</h3>
+          <p class="card-desc">Explore how modern ERP platforms transform management accounting — from cost centre reporting to performance measurement. Understand how data flows through integrated systems to support strategic decisions.</p>
+        </div>
+        <div class="card-footer">
+          <div class="card-meta">
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Self-paced</span>
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Foundations</span>
+          </div>
+          <a class="card-cta" href="https://share.articulate.com/2VX9uZA5YRCzTYWeptPNF" target="_blank">Preview <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+
+  <!-- ERP & COST MANAGEMENT -->
+  <div class="sec-group" id="sg-erp">
+    <div class="section-label"><div class="section-line"></div><span class="section-name">ERP &amp; Cost Management</span><div class="section-line"></div></div>
+    <div class="programme-grid">
+
+      <article class="programme-card" data-cat="erp" data-search="erp systems cost management production manufacturing enterprise resource planning">
+        <div class="card-bar bar-erp"></div>
+        <div class="card-body">
+          <div class="card-top"><span class="cat-pill cat-erp">ERP</span></div>
+          <h3 class="card-title">How ERP Systems Drive Cost Management in Production</h3>
+          <p class="card-desc">Understand how enterprise resource planning enables end-to-end cost control in manufacturing. Covers how ERP captures, allocates, and reports production costs so you can leverage these systems effectively.</p>
+        </div>
+        <div class="card-footer">
+          <div class="card-meta">
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Self-paced</span>
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Foundations</span>
+          </div>
+          <a class="card-cta" href="https://share.articulate.com/GZUNcII5tP_SNTYXlOQs1" target="_blank">Preview <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </article>
+
+      <article class="programme-card" data-cat="erp" data-search="activity key element production cost calculation erp cost centre routing">
+        <div class="card-bar bar-erp"></div>
+        <div class="card-body">
+          <div class="card-top"><span class="cat-pill cat-erp">ERP</span></div>
+          <h3 class="card-title">Activity as a Key Element of Production Cost Calculation in ERP</h3>
+          <p class="card-desc">Dive into activity-based structures within ERP and discover how they underpin accurate production cost calculations — essential for understanding cost centre activities and routing in manufacturing.</p>
+        </div>
+        <div class="card-footer">
+          <div class="card-meta">
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Self-paced</span>
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Foundations</span>
+          </div>
+          <a class="card-cta" href="https://share.articulate.com/YqPisYo8R172iVhP6bRQX" target="_blank">Preview <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </article>
+
+      <article class="programme-card" data-cat="erp" data-search="production order costing erp principles practice planned actual variance settlement">
+        <div class="card-bar bar-erp"></div>
+        <div class="card-body">
+          <div class="card-top"><span class="cat-pill cat-erp">ERP</span></div>
+          <h3 class="card-title">Production Order Costing in ERP: Principles and Practice</h3>
+          <p class="card-desc">Trace the full lifecycle of production order costing within ERP — from order creation to settlement. Learn how planned and actual costs are captured, compared, and reported to analyse variances and improve efficiency.</p>
+        </div>
+        <div class="card-footer">
+          <div class="card-meta">
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Self-paced</span>
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Foundations</span>
+          </div>
+          <a class="card-cta" href="https://share.articulate.com/FfvMXSDRZgTX243ELA3gL" target="_blank">Preview <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </article>
+
+      <article class="programme-card" data-cat="erp" data-search="product costing erp systems manufacturing foundations practice">
+        <div class="card-bar bar-erp"></div>
+        <div class="card-body">
+          <div class="card-top"><span class="cat-pill cat-erp">ERP</span><span class="badge-new">New</span></div>
+          <h3 class="card-title">Product Costing in ERP Systems for Manufacturing: Foundations to Practice</h3>
+          <p class="card-desc">A comprehensive look at product costing within ERP environments for manufacturing. Covers foundational concepts through to applied practice — building the skills to manage and analyse cost data accurately.</p>
+        </div>
+        <div class="card-footer">
+          <div class="card-meta">
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Self-paced</span>
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Foundations</span>
+          </div>
+          <a class="card-cta" href="https://share.articulate.com/BOZlNgX1mKexgtX9QwIuV" target="_blank">Preview <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+
+  <!-- AUDIT & AI -->
+  <div class="sec-group" id="sg-audit">
+    <div class="section-label"><div class="section-line"></div><span class="section-name">Audit &amp; Artificial Intelligence</span><div class="section-line"></div></div>
+    <div class="programme-grid">
+
+      <article class="programme-card" data-cat="audit" data-search="artificial intelligence internal audit production enterprises manufacturing ai">
+        <div class="card-bar bar-audit"></div>
+        <div class="card-body">
+          <div class="card-top"><span class="cat-pill cat-audit">Audit &amp; AI</span><span class="badge-new">New</span></div>
+          <h3 class="card-title">Artificial Intelligence and Internal Audit in Production Enterprises</h3>
+          <p class="card-desc">Discover how AI is reshaping internal audit in manufacturing. Explores AI-powered audit tools, automated risk detection, and the evolving role of auditors in an increasingly automated business environment.</p>
+        </div>
+        <div class="card-footer">
+          <div class="card-meta">
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Self-paced</span>
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Foundations</span>
+          </div>
+          <a class="card-cta" href="https://share.articulate.com/olQaFFzDXpF_jrq356Uyn" target="_blank">Preview <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </article>
+
+      <article class="programme-card" data-cat="audit" data-search="benefits implementing internal audit manufacturing risk compliance process improvement">
+        <div class="card-bar bar-audit"></div>
+        <div class="card-body">
+          <div class="card-top"><span class="cat-pill cat-audit">Audit &amp; AI</span></div>
+          <h3 class="card-title">Benefits of Implementing Internal Audit in a Manufacturing Company</h3>
+          <p class="card-desc">Build the business case for a robust internal audit function. Covers the tangible and strategic benefits in manufacturing — from risk mitigation and process improvement to regulatory compliance and stakeholder confidence.</p>
+        </div>
+        <div class="card-footer">
+          <div class="card-meta">
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Self-paced</span>
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Foundations</span>
+          </div>
+          <a class="card-cta" href="https://share.articulate.com/BRq06w0aJEzKF1RjvI_HP" target="_blank">Preview <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </article>
+
+      <article class="programme-card" data-cat="audit" data-search="artificial intelligence management control manufacturing budgeting forecasting performance monitoring">
+        <div class="card-bar bar-audit"></div>
+        <div class="card-body">
+          <div class="card-top"><span class="cat-pill cat-audit">Audit &amp; AI</span></div>
+          <h3 class="card-title">Artificial Intelligence in Management Control in a Manufacturing Company</h3>
+          <p class="card-desc">Examine how AI is applied to management control — from budgeting and forecasting to performance monitoring. Prepares controllers and finance leaders to work alongside intelligent systems in modern organisations.</p>
+        </div>
+        <div class="card-footer">
+          <div class="card-meta">
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Self-paced</span>
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Foundations</span>
+          </div>
+          <a class="card-cta" href="https://share.articulate.com/TuxdztE1QOAdlkXkcgtdc" target="_blank">Preview <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+
+  <!-- GLOBAL BUSINESS CULTURE -->
+  <div class="sec-group" id="sg-culture">
+    <div class="section-label"><div class="section-line"></div><span class="section-name">Global Business Culture</span><div class="section-line"></div></div>
+    <div class="programme-grid">
+
+      <article class="programme-card" data-cat="culture" data-search="japanese mindset culture values society cross-cultural global business japan">
+        <div class="card-bar bar-culture"></div>
+        <div class="card-body">
+          <div class="card-top"><span class="cat-pill cat-culture">Global Culture</span><span class="badge-new">New</span></div>
+          <h3 class="card-title">The Japanese Mindset — Part One: Culture, Values and Society</h3>
+          <p class="card-desc">An essential primer for professionals working with or within Japanese organisations. Explore the cultural values, social norms, and philosophical frameworks shaping how Japanese business people think, communicate, and collaborate.</p>
+        </div>
+        <div class="card-footer">
+          <div class="card-meta">
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Self-paced</span>
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Foundations</span>
+          </div>
+          <a class="card-cta" href="https://share.articulate.com/9kEAgbtZQlBFZ1m0nhc8S" target="_blank">Preview <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+
+
+  <div class="sec-group" id="sg-employability">
+    <div class="section-label"><div class="section-line"></div><span class="section-name">Personal Development</span><div class="section-line"></div></div>
+    <div class="programme-grid">
+
+      <article class="programme-card" data-cat="employability" data-search="future ready skills for education, work and life employability level0">
+        <div class="card-bar bar-employability"></div>
+        <div class="card-body">
+          <div class="card-top"><span class="cat-pill cat-employability">Personal Dev</span><span class="badge-new">New</span></div>
+          <h3 class="card-title">Future Ready: Skills for Education, Work &amp; Life</h3>
+          <p class="card-desc">A practical introduction to the skills that matter most in education, employment, and everyday life. Covers essential competencies including communication, critical thinking, and self-management — ideal for learners preparing for the modern world.</p>
+        </div>
+        <div class="card-footer">
+          <div class="card-meta">
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Self-paced</span>
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Level 0</span>
+          </div>
+          <a class="card-cta" href="https://share.articulate.com/BO_ZJeJVUZ8MJFWOAhwte" target="_blank">Preview <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </article>
+      <article class="programme-card" data-cat="employability" data-search="positive futures building resilience, confidence and inclusion employability level0">
+        <div class="card-bar bar-employability"></div>
+        <div class="card-body">
+          <div class="card-top"><span class="cat-pill cat-employability">Personal Dev</span><span class="badge-new">New</span></div>
+          <h3 class="card-title">Positive Futures: Building Resilience, Confidence &amp; Inclusion</h3>
+          <p class="card-desc">Develop the mindset and tools to navigate challenges, build genuine confidence, and thrive in diverse, inclusive environments. A transformative programme for individuals seeking to strengthen their personal and professional foundations.</p>
+        </div>
+        <div class="card-footer">
+          <div class="card-meta">
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Self-paced</span>
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Level 0</span>
+          </div>
+          <a class="card-cta" href="https://share.articulate.com/R5XXBSGmYITmoL5V56Hfi" target="_blank">Preview <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </article>
+      <article class="programme-card" data-cat="employability" data-search="future ready essential skills for success employability level0">
+        <div class="card-bar bar-employability"></div>
+        <div class="card-body">
+          <div class="card-top"><span class="cat-pill cat-employability">Personal Dev</span><span class="badge-new">New</span></div>
+          <h3 class="card-title">Future Ready: Essential Skills for Success</h3>
+          <p class="card-desc">Equip yourself with the core skills needed to succeed in today's fast-changing landscape. From goal-setting and adaptability to collaboration and problem-solving, this programme builds the employability toolkit every professional needs.</p>
+        </div>
+        <div class="card-footer">
+          <div class="card-meta">
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Self-paced</span>
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Level 0</span>
+          </div>
+          <a class="card-cta" href="https://share.articulate.com/1wKCxkGNCWxEyR9pWSl5z" target="_blank">Preview <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </article>
+      <article class="programme-card" data-cat="employability" data-search="managing your digital identity smart social media and online presence employability level0">
+        <div class="card-bar bar-employability"></div>
+        <div class="card-body">
+          <div class="card-top"><span class="cat-pill cat-employability">Personal Dev</span></div>
+          <h3 class="card-title">Managing Your Digital Identity: Smart Social Media &amp; Online Presence</h3>
+          <p class="card-desc">Take control of how you appear online. Learn how to build a professional digital identity, manage social media strategically, and protect your reputation in an increasingly public digital world.</p>
+        </div>
+        <div class="card-footer">
+          <div class="card-meta">
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Self-paced</span>
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Level 0</span>
+          </div>
+          <a class="card-cta" href="https://share.articulate.com/M6J82pkmdeuXQAUSR_0qB" target="_blank">Preview <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <div class="sec-group" id="sg-projectmgmt">
+    <div class="section-label"><div class="section-line"></div><span class="section-name">Project Management</span><div class="section-line"></div></div>
+    <div class="programme-grid">
+
+      <article class="programme-card" data-cat="projectmgmt" data-search="project management fundamentals for modern professionals projectmgmt level0">
+        <div class="card-bar bar-projectmgmt"></div>
+        <div class="card-body">
+          <div class="card-top"><span class="cat-pill cat-projectmgmt">Project Mgmt</span><span class="badge-new">New</span></div>
+          <h3 class="card-title">Project Management Fundamentals for Modern Professionals</h3>
+          <p class="card-desc">Master the essential principles of project management. From defining scope and building timelines to managing stakeholders and controlling risk — this programme gives you a practical, professional foundation applicable across any industry.</p>
+        </div>
+        <div class="card-footer">
+          <div class="card-meta">
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Self-paced</span>
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Level 0</span>
+          </div>
+          <a class="card-cta" href="https://share.articulate.com/T9_DulKuwJdrcklVERWm1" target="_blank">Preview <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </article>
+      <article class="programme-card" data-cat="projectmgmt" data-search="high performance productivity and time management for modern professionals projectmgmt level0">
+        <div class="card-bar bar-projectmgmt"></div>
+        <div class="card-body">
+          <div class="card-top"><span class="cat-pill cat-projectmgmt">Project Mgmt</span></div>
+          <h3 class="card-title">High-Performance Productivity &amp; Time Management for Modern Professionals</h3>
+          <p class="card-desc">Reclaim your time and amplify your output. This programme delivers proven strategies for prioritisation, deep work, and sustainable high performance — essential for professionals managing complex workloads in demanding environments.</p>
+        </div>
+        <div class="card-footer">
+          <div class="card-meta">
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Self-paced</span>
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Level 0</span>
+          </div>
+          <a class="card-cta" href="https://share.articulate.com/4IvCoCNNvSvdI61jPsDnJ" target="_blank">Preview <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </article>
+      <article class="programme-card" data-cat="projectmgmt" data-search="agile project management for modern teams projectmgmt level0">
+        <div class="card-bar bar-projectmgmt"></div>
+        <div class="card-body">
+          <div class="card-top"><span class="cat-pill cat-projectmgmt">Project Mgmt</span><span class="badge-new">New</span></div>
+          <h3 class="card-title">Agile Project Management for Modern Teams</h3>
+          <p class="card-desc">Understand and apply Agile principles to deliver projects faster, more flexibly, and with greater team alignment. Covers iterative planning, sprint cycles, and collaborative practices suited to dynamic, cross-functional teams.</p>
+        </div>
+        <div class="card-footer">
+          <div class="card-meta">
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Self-paced</span>
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Level 0</span>
+          </div>
+          <a class="card-cta" href="https://share.articulate.com/IEJ55I6IWR9V4TFHS2qbd" target="_blank">Preview <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </article>
+      <article class="programme-card" data-cat="projectmgmt" data-search="scrum master essentials leading agile teams successfully projectmgmt level0">
+        <div class="card-bar bar-projectmgmt"></div>
+        <div class="card-body">
+          <div class="card-top"><span class="cat-pill cat-projectmgmt">Project Mgmt</span></div>
+          <h3 class="card-title">Scrum Master Essentials: Leading Agile Teams Successfully</h3>
+          <p class="card-desc">Step confidently into the Scrum Master role. Learn how to facilitate sprints, remove blockers, and coach teams to self-organise effectively — building the skills to lead Agile delivery in real-world organisational settings.</p>
+        </div>
+        <div class="card-footer">
+          <div class="card-meta">
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Self-paced</span>
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Level 0</span>
+          </div>
+          <a class="card-cta" href="https://share.articulate.com/9Rdy_bP9xUXgMpMhmyiWI" target="_blank">Preview <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <div class="sec-group" id="sg-digitalai">
+    <div class="section-label"><div class="section-line"></div><span class="section-name">Digital Skills &amp; AI</span><div class="section-line"></div></div>
+    <div class="programme-grid">
+
+      <article class="programme-card" data-cat="digitalai" data-search="practical generative ai for workplace productivity digitalai level0">
+        <div class="card-bar bar-digitalai"></div>
+        <div class="card-body">
+          <div class="card-top"><span class="cat-pill cat-digitalai">Digital &amp; AI</span><span class="badge-new">New</span></div>
+          <h3 class="card-title">Practical Generative AI for Workplace Productivity</h3>
+          <p class="card-desc">Harness the power of generative AI tools to transform how you work. Covers practical applications across writing, research, data analysis, and communication — with a focus on responsible, effective use in professional settings.</p>
+        </div>
+        <div class="card-footer">
+          <div class="card-meta">
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Self-paced</span>
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Level 0</span>
+          </div>
+          <a class="card-cta" href="https://share.articulate.com/BBy-gmDpLsLXfbkdRgfQK" target="_blank">Preview <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </article>
+      <article class="programme-card" data-cat="digitalai" data-search="responsible ai assisted research principles, practice, and ethics digitalai level0">
+        <div class="card-bar bar-digitalai"></div>
+        <div class="card-body">
+          <div class="card-top"><span class="cat-pill cat-digitalai">Digital &amp; AI</span></div>
+          <h3 class="card-title">Responsible AI-Assisted Research: Principles, Practice, and Ethics</h3>
+          <p class="card-desc">Navigate the intersection of AI and research with integrity. This programme equips professionals and academics with the principles and practical skills to use AI research tools responsibly, accurately, and ethically.</p>
+        </div>
+        <div class="card-footer">
+          <div class="card-meta">
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Self-paced</span>
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Level 0</span>
+          </div>
+          <a class="card-cta" href="https://share.articulate.com/XpeTCxx6V4Iw6KbKQpSWK" target="_blank">Preview <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </article>
+      <article class="programme-card" data-cat="digitalai" data-search="responsible ai assisted research ethical integration for modern researchers digitalai level0">
+        <div class="card-bar bar-digitalai"></div>
+        <div class="card-body">
+          <div class="card-top"><span class="cat-pill cat-digitalai">Digital &amp; AI</span></div>
+          <h3 class="card-title">Responsible AI-Assisted Research: Ethical Integration for Modern Researchers</h3>
+          <p class="card-desc">A deeper exploration of ethical AI integration for researchers. Examines frameworks, bias, transparency, and academic integrity in AI-assisted workflows — preparing modern researchers to lead with credibility in an AI-augmented environment.</p>
+        </div>
+        <div class="card-footer">
+          <div class="card-meta">
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Self-paced</span>
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Level 0</span>
+          </div>
+          <a class="card-cta" href="https://share.articulate.com/n662cCxununDm6KH2VZwd" target="_blank">Preview <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </article>
+      <article class="programme-card" data-cat="digitalai" data-search="ai powered career development modern strategies for employability digitalai level0">
+        <div class="card-bar bar-digitalai"></div>
+        <div class="card-body">
+          <div class="card-top"><span class="cat-pill cat-digitalai">Digital &amp; AI</span><span class="badge-new">New</span></div>
+          <h3 class="card-title">AI-Powered Career Development: Modern Strategies for Employability</h3>
+          <p class="card-desc">Use AI strategically to accelerate your career. From optimising your CV and LinkedIn profile to preparing for interviews and identifying opportunities, this programme gives professionals a cutting-edge approach to modern employability.</p>
+        </div>
+        <div class="card-footer">
+          <div class="card-meta">
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Self-paced</span>
+            <span class="meta-chip"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Level 0</span>
+          </div>
+          <a class="card-cta" href="https://share.articulate.com/4MSm9Zptxr5_9CZ2qCwmO" target="_blank">Preview <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </article>
+    </div>
+  </div>
+
+</main>
+
+
+
+<script>
+  var activeCat = 'all';
+  function setFilter(cat, btn) {
+    activeCat = cat;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    applyFilters();
+  }
+  function applyFilters() {
+    var q = (document.getElementById('searchInput').value || '').toLowerCase().trim();
+    var cards = document.querySelectorAll('.programme-card');
+    var count = 0;
+    cards.forEach(function(c) {
+      var catOk = activeCat === 'all' || c.dataset.cat === activeCat;
+      var srchOk = !q || c.dataset.search.includes(q) || c.querySelector('.card-title').textContent.toLowerCase().includes(q) || c.querySelector('.card-desc').textContent.toLowerCase().includes(q);
+      var show = catOk && srchOk;
+      c.style.display = show ? '' : 'none';
+      if (show) count++;
+    });
+    document.getElementById('rcount').textContent = count;
+    ['finance','erp','audit','culture'].forEach(function(s) {
+      var sg = document.getElementById('sg-' + s);
+      if (!sg) return;
+      var any = Array.from(sg.querySelectorAll('.programme-card')).some(function(c){ return c.style.display !== 'none'; });
+      sg.style.display = any ? '' : 'none';
+    });
+    var nr = document.getElementById('noResults');
+    nr.classList.toggle('show', count === 0);
+  }
+</script>
+</body>
+</html>
